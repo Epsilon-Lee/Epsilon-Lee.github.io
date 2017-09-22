@@ -2,8 +2,7 @@
 layout: post
 title: "Variational Posterior Estimation via GANs: Bayesian Logistic Regression As Showcase"
 author: Guanlin Li
-tag: 
-- blog
+tag: blog
 ---
 
 > I will start concise presentations of works done by others through exploratory, experimentary practice. This blog is a based on a start of **Ferenc Huszar**'s series [blogs](http://www.inference.vc/variational-inference-with-implicit-probabilistic-models-part-1-2/). His blogs continually demonstrates the use of GANs as a learning mechanism for implicit generative models, such as a variational distribution defined implicitly by a neural network for easy sampling and posterior inference. Personally, I want to thank Ferenc a lot, since his blogs is my source of intuitions on the way to learn and interpret probabilistic generitive modelling, variational methods and GANs. I wish to see his continual updates of his Blog. 
