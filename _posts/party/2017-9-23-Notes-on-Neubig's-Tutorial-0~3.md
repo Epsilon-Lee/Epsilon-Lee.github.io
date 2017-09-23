@@ -1,4 +1,10 @@
-## Notes on Neubig's Tutorial 0~3
+
+---
+layout: post
+title: "Notes on Neubig's Tutorial 0~3"
+author: Guanlin Li
+tag: party
+---
 
 [TOC]
 
