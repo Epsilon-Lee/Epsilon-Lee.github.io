@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: "Notes on Neubig's Tutorial 0~3"
