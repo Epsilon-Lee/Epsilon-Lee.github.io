@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Notes on Neubig's Tutorial 0~3"
+title: "Brief Notes on Neubig's Tutorial 0~3"
 author: Guanlin Li
 tag: party
 ---
