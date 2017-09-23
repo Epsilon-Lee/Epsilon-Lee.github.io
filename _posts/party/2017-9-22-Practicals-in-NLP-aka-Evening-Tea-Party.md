@@ -110,3 +110,17 @@ Currently we have a moderate party size, it is a mixture of many lovely people a
 > 白雪峰 鲍航波 陈双 龚恒 候宇泰 胡东瑶 李冠林 马晶义 田恕存 王贺伟 王瑛瑶 杨奭喆 吴焕钦 张冠华 张丽媛 赵晓妮 赵笑天 
 
 `Caveat: Tell me if I miss anyone.`
+
+#### B. Schedule (Updated on 9/23/2017)
+
+| Topics                                  | Members                | Date  |
+| --------------------------------------- | ---------------------- | ----- |
+| 1. N-gram Language Models               | 田恕存，龚恒，鲍航波             | 09/29 |
+| 2. Word Segmentation                    | 白雪峰，杨奭喆，邓俊峰            | 10/13 |
+| 3. POS Tagging with HMM                 | 胡东瑶，赵晓妮，赵笑天，邓俊峰        | 10/20 |
+| 4. Perceptron and Discriminative Models | 田恕存，龚恒，鲍航波             | 10/27 |
+| 5. Neural Networks and Deep Learning    | 白雪峰，王瑛瑶，吴焕钦，王贺伟，李冠林，陈双 | 11/03 |
+| 6. Topic Models                         | 马晶义，张冠华，胡东瑶            | 11/10 |
+| 7. Parsing Techniques                   | 侯宇泰，陈双，胡东瑶，张冠华，李冠林，马晶义 | 11/17 |
+| 8. Structured Perceptron and Search     | 胡东瑶，李冠林，赵晓妮            | 11/24 |
+
