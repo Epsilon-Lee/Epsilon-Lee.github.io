@@ -24,13 +24,14 @@ It is very important for one to get familiar with his/her most suitable developm
 
   - **Login to a Linux machine.** If you have a server id, like me, I have an account on 117 server which is on the LAN of our lab, you can log in on that machine via `ssh glli@10.10.255.117`(this is my log in command). Then you will be required for your password. But I would recommend using a linux client named [MobaXterm](http://mobaxterm.mobatek.net/) which is an integrated client app that can hold a file management GUI and a terminal window, like the following. Since we call a connection between your local machine and the linux server as a session, you can manage your sessions through within the same Tab view, like tab management in Chrome and other browser. 
 
-![]({{ site.baseurl }}/public/imgs/mobaXterm.png)
+	![]({{ site.baseurl }}/public/img/mobaXterm.png)
 
   - **Create a session.** The way to create a session is very simple, just click `Session` button in the tool bar, the first button along that row. And choose `ssh` connection and then type your `Remote host` IP and your username in `Specify username`. Then you can click OK to go on opening a terminal and input your password to log in. *Note that: this session will saved and you can find it at the session tab at the left edge of your window with a star logo! You won't miss it! Every time you want to create a new terminal, just double click your session. You can rename the session as I do in the following.* 
 
-![]({{ site.baseurl }}/public/imgs/session_ssh.png)
+	![]({{ site.baseurl }}/public/img/session_ssh.png)
 
-![]({{ site.baseurl }}/public/imgs/session_rename.png)
+
+	![]({{ site.baseurl }}/public/img/session_rename.png)
 
   - **Use your favorite text editor.** I recommend [Sublime Text](https://www.sublimetext.com/) if you are not familiar with vim/gvim etc. Then your coding workflow will be like this: a). Open a source file through the `sftp` tab of MobaXterm using sublime; 2). Edit it, and save it using `ctrl+s`; 3). Debug it in the terminal, and go back to a). until you finish your work. 
 
