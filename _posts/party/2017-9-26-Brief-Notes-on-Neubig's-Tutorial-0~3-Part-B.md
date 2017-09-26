@@ -237,7 +237,7 @@ Don't feel pain to write in markdown, with which the grammar is as natural as yo
 
 - **Different level of title or section title.** `#` is the 1st level, `##` is the second, `###` the third, `####` the fourth etc. 
 - **Comments or notes between-lines.** Use `>` to mark the beginning of that line. 
-- **Code snippets.** Use ` `` ` for in-line codes and use ` ``` ``` ` for cross-line codes. 
+- **Code snippets.** Code snippets. Use double "`" for in-line codes and use double "```" for cross-line codes. 
 - **URLs.** Use `[content](url)` to show the effect like [content](url). 
 - **Math formula.** This is my favorite, just type `Latex` grammar between dollars `$$ \sum_x x^2 $$` which will show $$ \sum_x x^2 $$. Beautiful hah! 
 
