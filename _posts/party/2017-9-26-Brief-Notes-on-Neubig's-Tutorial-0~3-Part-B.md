@@ -241,6 +241,8 @@ Don't feel pain to write in markdown, with which the grammar is as natural as yo
 - **URLs.** Use `[content](url)` to show the effect like [content](url). 
 - **Math formula.** This is my favorite, just type `Latex` grammar between dollars `$$ \sum_x x^2 $$` which will show $$ \sum_x x^2 $$. Beautiful hah! 
 
+I simple guide to markdown is given here as a Hello! file. 
+
 However, if you want to use [Google Drive](https://drive.google.com/drive/) or other cloud drive to hold your `.md` files. You can use [stackedit.io](https://stackedit.io/editor) which is much lightweight and has natural interface with many mainstream cloud drives. 
 
 ![]({{ site.baseurl }}/public/img/party/stackedit.PNG)
