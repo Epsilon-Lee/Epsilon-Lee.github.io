@@ -229,7 +229,7 @@ I **Really, Really, Really, Really** recommend you guys to use [Typora](https://
 
 I used to use [stackedit.io](https://stackedit.io/), as well, a [WISIWIG]() markdown editor like Typora. However, it could not provide basic file management usage like in Typora: 
 
-![]({{ site.baseurl }}/public/img/party/typora.PNG)
+![]({{ site.baseurl }}/public/img/party/Typora.PNG)
 
 You can see the leftmost navigator with `Files` and `Outline` for the file management of current chosen directory and outline of your current markdown file. All my love about Typora comes from [Jiaming Song](http://tsong.me/blog/hello-world/) who is the author of the theme of my blog and a young researcher. 
 
