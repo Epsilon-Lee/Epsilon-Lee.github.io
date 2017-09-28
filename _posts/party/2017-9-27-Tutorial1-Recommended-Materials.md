@@ -75,12 +75,19 @@ So I would like to list a few goals for you, if you would like to read the above
 
 ### 3. Language modeling benchmarks
 
-In this part, I will points to some LM benchmarks for you to test your own language models and compare it with other people around the world. 
+- In this part, I will points to some LM benchmarks for you to test your own language models and compare it with other people around the world. 
 
-> **Benchmark.** 
+  > **Benchmark.** 
+  >
+  > Benchmark is an experimental setting a). dataset, i.e. training/dev/test set b). standard state-of-the-art algorithms c). etc. to help you with test a new proposed method or model with others. 
 
-- **[Penn Tree Bank](https://catalog.ldc.upenn.edu/LDC99T42)**, which is available under registration (need fees); but you can use a organized dataset [here](https://github.com/yoonkim/lstm-char-cnn), which is provided by [Yoon Kim](http://www.people.fas.harvard.edu/~yoonkim/) at Harvard University. 
-- ******[1 Billion Word Language Model Benchmark](http://www.statmt.org/lm-benchmark/)**. 
+  - **[Penn Tree Bank](https://catalog.ldc.upenn.edu/LDC99T42)**, which is available under registration (need fees); but you can use a tokenized dataset [here](https://github.com/yoonkim/lstm-char-cnn), which is provided by [Yoon Kim](http://www.people.fas.harvard.edu/~yoonkim/) at Harvard University. The following figure is from his [paper](https://arxiv.org/pdf/1508.06615.pdf) which shows some reported perplexity. 
+
+  ![]({{ site.baseurl }}/public/img/party/kim-char-lm-result.PNG)
+
+  - **[1 Billion Word Language Model Benchmark](http://www.statmt.org/lm-benchmark/)** from Google. You can find out performance results of different models in [this paper](https://arxiv.org/pdf/1312.3005.pdf). 
+
+  ![]({{ site.baseurl }}/public/img/party/slm-result-1billion.PNG)
 
 ### 4. Bonus: how to read a paper?
 
