@@ -19,7 +19,7 @@ The above picture is Shucun as a instructor talking to us all. He appears to be 
 
 The second part of our party belongs to Hangbo (航波), who is good at programming and has strong computational thought. Look at him in the following image. You may say, "Wait a minute? Where on earth is him?" Don't worry, he has become the flow plot which can represents his mission on getting program neat, clear and high-speed! [\Facepalm]
 
-![]({{ site.baseurl }}/public/img/party/programming.PNG)
+![]({{ site.baseurl }}/public/img/party/programming.png)
 
 The last part of our party is the most excited time. Our Heng (阿恒) organized some issues and questions for us to discuss over the paper "Two decades [...]", which is a very well-written survey in 2000 on different aspects and promising directions of statistical language modeling. Heng talked on many topics, like the his understanding of learning linguistic structures and facilitate latent variables under the surface to help improve the predictive power of language modeling. He also talked about domain adaptation of LM and gave us two commonly used tricks to do transfer learning, bravo! 
 
