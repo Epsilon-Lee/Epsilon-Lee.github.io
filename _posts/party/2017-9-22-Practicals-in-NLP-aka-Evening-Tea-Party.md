@@ -117,7 +117,7 @@ Currently we have a moderate party size, it is a mixture of many lovely people a
 | --------------------------------------- | ---------------------- | ----- |
 | 1. N-gram Language Models               | 田恕存，龚恒，鲍航波             | 09/29 |
 | 2. Word Segmentation                    | 白雪峰，杨奭喆，邓俊锋            | 10/13 |
-| 3. POS Tagging with HMM                 | 胡东瑶，赵晓妮，赵笑天，邓俊锋        | 10/20 |
+| 3. POS Tagging with HMM                 | 胡东瑶，赵笑天，邓俊锋            | 10/20 |
 | 4. Perceptron and Discriminative Models | 田恕存，龚恒，鲍航波             | 10/27 |
 | 5. Neural Networks and Deep Learning    | 白雪峰，王瑛瑶，吴焕钦，王贺伟，李冠林，陈双 | 11/03 |
 | 6. Topic Models                         | 马晶义，张冠华，赵笑天            | 11/10 |
