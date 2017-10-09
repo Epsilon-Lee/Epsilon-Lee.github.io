@@ -98,11 +98,11 @@ Now, let us embrace the decoding stage - to deal with the decoding problem (actu
 
 We can formulate the problem of finding the best segmentation as finding a path that connects those black nodes in the following graph. 
 
-![]({{ site.baseurl }}/public/img/party/ws-without-path.PNG)
+![]({{ site.baseurl }}/public/img/party/ws-without-path.png)
 
-![]({{ site.baseurl }}/public/img/party/optimal-path.PNG)
+![]({{ site.baseurl }}/public/img/party/optimal-path.png)
 
-![]({{ site.baseurl }}/public/img/party/ws-gold.PNG)
+![]({{ site.baseurl }}/public/img/party/ws-gold.png)
 
 The above 3 figures represent: 
 
@@ -122,7 +122,7 @@ There are constraints for the path. That is:
 
 After we abstract the segmentation problem as a path finding problem, we should now find the usage of the trained language model $$P(\cdot)$$. It is very obvious to say that the language model can give weights between any two nodes, that is the edge with weight, like below: 
 
-![]({{ site.baseurl }}/public/img/party/weighted-path.PNG)
+![]({{ site.baseurl }}/public/img/party/weighted-path.png)
 
 The sum of the path is the negative log likelihood of the sentence "预订 的 搬迁 日  就要 来到 。". That is:  
 
@@ -136,11 +136,11 @@ The nature of Viterbi algorithm is to take advantage of the optimal substructure
 
 Given the sentence to be segmented, we can draw the nodes to separate each character. Moreover, we can find that the path should start and end with the red nodes in the following figure, that is the beginning and ending of the node sequence. 
 
-![]({{ site.baseurl }}/public/img/party/ws-begin-end.PNG)
+![]({{ site.baseurl }}/public/img/party/ws-begin-end.png)
 
 We index the nodes as following: 
 
-![]({{ site.baseurl }}/public/img/party/ws-nodes.PNG)
+![]({{ site.baseurl }}/public/img/party/ws-nodes.png)
 
 Suppose that for each node with index $$i$$, we **1).** save the smallest possible sum $$s_i$$ to that node and **2).** record the edge with the node index $$n_i$$ that brings with this sum (which is the edge $$(n_i, i)$$). Since there are  $$i-1$$ possible edges that could be linked from previous $$i-1$$ nodes, so we can have a recursive formula to compute $$s_i$$: 
 
