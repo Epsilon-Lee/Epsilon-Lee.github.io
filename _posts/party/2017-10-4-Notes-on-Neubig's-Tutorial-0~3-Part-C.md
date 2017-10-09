@@ -64,7 +64,7 @@ Firstly, let us be familiar with our training data, how they looked?
 
   ![]({{ site.baseurl }}/public/img/party/ws-train.PNG)
 
-- The test data consists of lines, each with an test example and its gold reference separated by "|||". 
+- The test data consists of lines, each with an test example and its gold reference separated by `|||`. 
 
   ![]({{ site.baseurl }}/public/img/party/ws-test.PNG)
 
