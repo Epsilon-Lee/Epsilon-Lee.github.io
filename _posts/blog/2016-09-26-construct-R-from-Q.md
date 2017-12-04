@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Construct $\mathbb{R}$ from $\mathcal{Q}$"
+title: "Construct $$\mathbb{R}$$ from $$\mathcal{Q}$$"
 author: Guanlin Li
 tag: blog
 ---
