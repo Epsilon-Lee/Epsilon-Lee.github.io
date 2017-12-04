@@ -2,7 +2,7 @@
 layout: post
 title: "PyTorch Basics Part 1 (in Chinese)"
 author: Guanlin Li
-tag: blog
+tag: party
 ---
 
 `2017.11.25 glli`

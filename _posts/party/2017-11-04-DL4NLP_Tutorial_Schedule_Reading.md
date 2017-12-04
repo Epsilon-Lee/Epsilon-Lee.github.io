@@ -2,7 +2,7 @@
 layout: post
 title: "Neural Methods for NLP: Schedule (in Chinese)"
 author: Guanlin Li
-tag: blog
+tag: party
 ---
 
 > 下面部分DL表示《Deep Learning》这本书，NNM4NLP表示《Neural Network Method for Natural Language Processing》这本书。
