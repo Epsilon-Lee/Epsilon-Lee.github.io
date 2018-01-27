@@ -10,7 +10,7 @@ tag: redmond_rg
 Welcome to the reading group blog post series of [Redmond Liu](https://lemaoliu.github.io/homepage/) at [Tencent AI Lab](http://ai.tencent.com/ailab/index.html). Currently, we have three lovely members:
 
 - [Lemao (Redmond) Liu](https://lemaoliu.github.io/homepage/), senior researcher at Tecent AI Lab.
-- [Xintong (Oolong) Li](https://znculee.github.io), research intern at Tencent AI Lab, PhD candidate at CUHK.
+- [Charles Xin-Tong Li](https://znculee.github.io), research intern at Tencent AI Lab, PhD candidate at CUHK.
 - [Guanlin (Epsilon) Li](https://epsilon-lee.github.io), research intern at Tencent AI Lab, PhD student at HIT.
 
 ### 2. Purpose and intention
@@ -32,3 +32,7 @@ After each reading group meeting, we would like to write a summary blog post. Th
 ### 4. Contact
 
 We are very open to welcome discussion. Formally, we could only be accessed through email at present. However, it is always nice if you write down comments through [disqus](https://disqus.com/) which is a plugin below the every blog post. 
+
+- Lemao (Redmond) Liu, lemaoliu@gmail.com.
+- Charles Xin-Tong Li, znculee@gmail.com.
+- Guanlin (Epsilon) Li, epsilonlee.green@gmail.com.
