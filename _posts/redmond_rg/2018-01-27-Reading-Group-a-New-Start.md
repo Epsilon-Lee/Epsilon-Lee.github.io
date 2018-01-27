@@ -5,6 +5,8 @@ author: Guanlin Li
 tag: redmond_rg
 ---
 
+`Drafted by Guanlin Li`
+
 ### 1. Welcome to Redmond's reading group
 
 Welcome to the reading group blog post series of [Redmond Liu](https://lemaoliu.github.io/homepage/) at [Tencent AI Lab](http://ai.tencent.com/ailab/index.html). Currently, we have three lovely members:
