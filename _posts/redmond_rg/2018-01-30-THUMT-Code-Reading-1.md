@@ -1,19 +1,19 @@
 ---
 layout: post
-title: "THUNMT Code Reading Part 1: Execution of Functional Flow"
+title: "THUMT Code Reading Part 1: Execution of Functional Flow"
 author: Guanlin Li
 tag: redmond_rg
 ---
 
 `Guanlin Li drafted`
 
-> [THUNMT](https://github.com/thumt/THUMT) is an open-source neural machine translation (nmt) code base or toolkit for fast prototype development. Since our team is doing research on nmt or more general structured prediction tasks. We have chosen THUNMT as our research prototype, so many thanks to [Yang Liu's team](http://nlp.csai.tsinghua.edu.cn/~ly/). 
+> [THUMT](https://github.com/thumt/THUMT) is an open-source neural machine translation (nmt) code base or toolkit for fast prototype development. Since our team is doing research on nmt or more general structured prediction tasks. We have chosen THUMT as our research prototype, so many thanks to [Yang Liu's team](http://nlp.csai.tsinghua.edu.cn/~ly/). 
 >
-> This post is about understanding the basic functional flow of the code, that is the execution flow from the program entrance. Since I am quite new to TensorFlow (which is THUNMT's underlying framework), most of the words below is more a learning process record than a deeper coding trick interpretation. However, hope it will help you better understand the code functionally and enjoy reading. More specifically, this post mainly focus on the `trainer.py` code.
+> This post is about understanding the basic functional flow of the code, that is the execution flow from the program entrance. Since I am quite new to TensorFlow (which is THUMT's underlying framework), most of the words below is more a learning process record than a deeper coding trick interpretation. However, hope it will help you better understand the code functionally and enjoy reading. More specifically, this post mainly focus on the `trainer.py` code.
 
 [TOC]
 
-### 1. `main` function in `thunmt/bin/trainer.py`
+### 1. `main` function in `thumt/bin/trainer.py`
 
 Almost all (supervised) deep learning training process is abstracted as 3 main components:
 
@@ -21,7 +21,7 @@ Almost all (supervised) deep learning training process is abstracted as 3 main c
 2. Training
 3. Validation and model selection
 
-The THUNMT code is well-written and has a clear structure where all the preparation (except for dataset preprocessing which is done with code files in `thunmt/scripts`) for training is done within the `main` function in `thunmt/bin/trainer.py`. 
+The THUMT code is well-written and has a clear structure where all the preparation (except for dataset preprocessing which is done with code files in `thumt/scripts`) for training is done within the `main` function in `thumt/bin/trainer.py`. 
 
 #### A. Preparation for training
 
@@ -96,7 +96,7 @@ The following is a printed output of the dictionary `features` when batch size i
 {'source': <tf.Tensor 'ToInt32:0' shape=(128, ?) dtype=int32>, 'source_length': <tf.Tensor 'Squeeze:0' shape=(128,) dtype=int32>, 'target': <tf.Tensor 'ToInt32_1:0' shape=(128, ?) dtype=int32>, 'target_length': <tf.Tensor 'Squeeze_1:0' shape=(128,) dtype=int32>}
 ```
 
-In the main function of `trainer.py`, the `dataset.get_training_input(params.input, params)` will return the `features` dictionary. `thunmt/data/dataset` module uses TF's `data.Dataset` module to construct an dataset iterator which is a **transformed** dataset `tf.data.Dataset.zip`ed from `src_dataset` and `tgt_dataset` (`type(src_dataset)==>tf.data.TextLineDataset`). Then we use the `dataset` to get a dataset iterator: `iterator = dataset.make_one_shot_iterator()`. And get the tensor variable dictionary `features` through `iterator.get_next()`. 
+In the main function of `trainer.py`, the `dataset.get_training_input(params.input, params)` will return the `features` dictionary. `thumt/data/dataset` module uses TF's `data.Dataset` module to construct an dataset iterator which is a **transformed** dataset `tf.data.Dataset.zip`ed from `src_dataset` and `tgt_dataset` (`type(src_dataset)==>tf.data.TextLineDataset`). Then we use the `dataset` to get a dataset iterator: `iterator = dataset.make_one_shot_iterator()`. And get the tensor variable dictionary `features` through `iterator.get_next()`. 
 
 > **Notes.** [Here is a link](https://www.leiphone.com/news/201711/zV7yM5W1dFrzs8W5.html) to a great introduction (in Chinese) to the `tf.data.Dataset` interface. 
 
@@ -142,13 +142,13 @@ And build the Multi-GPU loss as the output of the forward computation graph:
     	loss = tf.add_n(sharded_losses) / len(sharded_losses)
 ```
 
-`thunmt` provides us with three on-the-hand model architecture:
+`thumt` provides us with three on-the-hand model architecture:
 
 - Naive sequence-to-sequence model,
 - Rnnsearh: the seq2seq+att model, and
 - Transformer.
 
-You can find them under `thunmt/models`. Each model class inherits the `NMTModel` class in the `thunmt/interface/models.py` file and overrides and implements several methods like:
+You can find them under `thumt/models`. Each model class inherits the `NMTModel` class in the `thumt/interface/models.py` file and overrides and implements several methods like:
 
 - `get_training_func`: this will build the cg for training time, it is called when construct `sharded_loss` above. 
 - `get_evaluation_func`: builds cg for evaluation.
@@ -302,7 +302,7 @@ INFO:tensorflow:step = 10, loss = 9.43514, source = [128  28], target = [128  28
 
 #### C. Validation and model selection
 
-> Actually, this part is closely related to the training process, since thunmt package provide the functionality for model selection **during training** through the `EvaluationHook`. 
+> Actually, this part is closely related to the training process, since thumt package provide the functionality for model selection **during training** through the `EvaluationHook`. 
 
 The checkpoint hook is used for saving checkpoint. This hook is necessary when we perform **no** evaluation during training, that is we set `eval_input_fn` as `None`: 
 
@@ -342,7 +342,7 @@ If `eval_input_fn` is not `None`, the `EvaluationHook` is constructed through th
 - `eval_input_fn(eval_inputs, params)`: a Tensor iterator over the evaluation data. 
 - `decode_target_ids(x, params)`: an index to symbol transformation function. Thus we can get strings out of ids of the prediction produced by the inference graph. 
 
-Note that the `EvaluationHook` is defined by the author in `thunmt/utils/hooks.py`. This customized hook follows the hook definition specification written [here](https://www.tensorflow.org/api_docs/python/tf/train/SessionRunHook). 
+Note that the `EvaluationHook` is defined by the author in `thumt/utils/hooks.py`. This customized hook follows the hook definition specification written [here](https://www.tensorflow.org/api_docs/python/tf/train/SessionRunHook). 
 
 ```python
 class EvaluationHook(tf.train.SessionRunHook):
