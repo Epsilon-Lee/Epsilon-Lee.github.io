@@ -5,8 +5,6 @@ author: Guanlin Li
 tag: redmond_rg
 ---
 
-## THUNMT Code Reading Part 1: Execution of Functional Flow
-
 > [THUNMT](https://github.com/thumt/THUMT) is an open-source neural machine translation (nmt) code base or toolkit for fast prototype development. Since our team is doing research on nmt or more general structured prediction tasks. We have chosen THUNMT as our research prototype, so many thanks to [Yang Liu's team](http://nlp.csai.tsinghua.edu.cn/~ly/). 
 >
 > This post is about understanding the basic functional flow of the code, that is the execution flow from the program entrance. Since I am quite new to TensorFlow (which is THUNMT's underlying framework), most of the words below is more a learning process record than a deeper coding trick interpretation. However, hope it will help you better understand the code functionally and enjoy reading. More specifically, this post mainly focus on the `trainer.py` code.
