@@ -79,7 +79,155 @@ After overriding the parameters, the program export the newly updated parameters
     )
 ```
 
+Then comes the **computational graph construction** part, which is within the code snippet: `with tf.Graph().as_default()`. Since TF can help manage several specific computational graphs within a graph container which is explicitly declared through the previous `with tf.Graph().as_default()`.  The main graph (forward computation of the model) is connected part by part from input of the graph `features` to the output of the graph `loss`. 
 
+`features` is a python dictionary which contains:
+
+- source batch ids (`features['source']`),
+- target batch ids (`features['target']`),
+- source batch lengths (`features['source_length']`) and
+- target batch lengths (`features['target_length']`).
+
+The following is a printed output of the dictionary `features` when batch size is set to 128:
+
+```shell
+{'source': <tf.Tensor 'ToInt32:0' shape=(128, ?) dtype=int32>, 'source_length': <tf.Tensor 'Squeeze:0' shape=(128,) dtype=int32>, 'target': <tf.Tensor 'ToInt32_1:0' shape=(128, ?) dtype=int32>, 'target_length': <tf.Tensor 'Squeeze_1:0' shape=(128,) dtype=int32>}
+```
+
+In the main function of `trainer.py`, the `dataset.get_training_input(params.input, params)` will return the `features` dictionary. `thunmt/data/dataset` module uses TF's `data.Dataset` module to construct an dataset iterator which is a **transformed** dataset `tf.data.Dataset.zip`ed from `src_dataset` and `tgt_dataset` (`type(src_dataset)==>tf.data.TextLineDataset`). Then we use the `dataset` to get a dataset iterator: `iterator = dataset.make_one_shot_iterator()`. And get the tensor variable dictionary `features` through `iterator.get_next()`. 
+
+> **Notes.** [Here is a link](https://www.leiphone.com/news/201711/zV7yM5W1dFrzs8W5.html) to a great introduction (in Chinese) to the `tf.data.Dataset` interface. 
+
+Then from `features` which is the entrance of the model's forward computation graph, transformations are applied to it. The first transformation is to transform the token strings to its corresponding ids through a lookup table:
+
+```python
+# Create lookup table
+        src_table = tf.contrib.lookup.index_table_from_tensor(
+            tf.constant(params.vocabulary["source"]),
+            default_value=params.mapping["source"][params.unk]
+        )
+        tgt_table = tf.contrib.lookup.index_table_from_tensor(
+            tf.constant(params.vocabulary["target"]),
+            default_value=params.mapping["target"][params.unk]
+        )
+        
+        # String to index lookup
+        features["source"] = src_table.lookup(features["source"])
+        features["target"] = tgt_table.lookup(features["target"])
+```
+
+Then batchify the `features` through function `batch_examples()`. [**Caution: here I haven't understand the mechanism of how to iteratively get data feed through the entrance of the cg, refer to a later post.**] 
+
+> **More words on the Caution.** Since the `features` is returned through `tf.contrib.training.bucket_by_sequence_length`, and `example` variable is feed as its argument. I wonder on executing `sess.run(...)`, whether the `batch_examples` operation is called until `batch_size` number of example is iteratively fetch out from `dataset`. (A small experiment is needed.)
+
+After getting `features`, we can then use it as input to build model's forward computation graph. Firstly, we construct the model class instantiation:
+
+```
+# Build model
+initializer = get_initializer(params)
+model = model_cls(params)
+```
+
+And build the Multi-GPU loss as the output of the forward computation graph:
+
+```python
+# Multi-GPU setting
+        sharded_losses = parallel.parallel_model(
+            model.get_training_func(initializer),
+            features,
+            params.device_list
+        )
+    	loss = tf.add_n(sharded_losses) / len(sharded_losses)
+```
+
+`thunmt` provides us with three on-the-hand model architecture:
+
+- Naive sequence-to-sequence model,
+- Rnnsearh: the seq2seq+att model, and
+- Transformer.
+
+You can find them under `thunmt/models`. Each model class inherits the `NMTModel` class in the `thunmt/interface/models.py` file and overrides and implements several methods like:
+
+- `get_training_func`: this will build the cg for training time, it is called when construct `sharded_loss` above. 
+- `get_evaluation_func`: builds cg for evaluation.
+- `get_inference_func`: builds cg for inference/decoding.
+
+And within each specific model class, they use `model_graph(features, labels, params)` function to build the forward computation graph. 
+
+> **TODO.** I plan to visualize the computational graph of each of the three model: seq2seq, rnnsearch and transformer through tensorboard. 
+
+After constructing the loss, all the trainable parameters are printed to the log along with their size.
+
+```python
+# Print parameters
+        all_weights = {v.name: v for v in tf.trainable_variables()}
+        total_size = 0
+
+        for v_name in sorted(list(all_weights)):
+            v = all_weights[v_name]
+            tf.logging.info("%s\tshape    %s", v.name[:-2].ljust(80),
+                            str(v.shape).ljust(20))
+            v_size = np.prod(np.array(v.shape.as_list())).tolist()
+            total_size += v_size
+        tf.logging.info("Total trainable variables size: %d", total_size)
+```
+
+Then the **Adam optimize**r is constructed with learning rate initialization.
+
+```python
+learning_rate = get_learning_rate_decay(params.learning_rate,
+                                                global_step, params)
+learning_rate = tf.convert_to_tensor(learning_rate, dtype=tf.float32)
+tf.summary.scalar("learning_rate", learning_rate)
+
+# Create optimizer
+opt = tf.train.AdamOptimizer(learning_rate,
+                             beta1=params.adam_beta1,
+                             beta2=params.adam_beta2,
+                             epsilon=params.adam_epsilon)
+```
+
+Then the `train_op` is created through `tf.contrib.layers.optimize_loss(...)`:
+
+```python
+        if params.update_cycle == 1:
+            train_op = tf.contrib.layers.optimize_loss(
+                name="training",
+                loss=loss,
+                global_step=global_step,
+                learning_rate=learning_rate,
+                clip_gradients=params.clip_grad_norm or None,
+                optimizer=opt,
+                colocate_gradients_with_ops=True
+            )
+            zero_op = tf.no_op("zero_op")
+            collect_op = tf.no_op("collect_op")
+        else:
+            grads_and_vars = opt.compute_gradients(
+                loss, colocate_gradients_with_ops=True)
+            gradients = [item[0] for item in grads_and_vars]
+            variables = [item[1] for item in grads_and_vars]
+
+            variables = utils.replicate_variables(variables)
+            zero_op = utils.zero_variables(variables)
+            collect_op = utils.collect_gradients(gradients, variables)
+
+            scale = 1.0 / params.update_cycle
+            gradients = utils.scale_gradients(variables, scale)
+
+            # Gradient clipping
+            if isinstance(params.clip_grad_norm or None, float):
+                gradients, _ = tf.clip_by_global_norm(gradients,
+                                                      params.clip_grad_norm)
+
+            # Update variables
+            grads_and_vars = list(zip(gradients, tf.trainable_variables()))
+
+            with tf.control_dependencies([collect_op]):
+                train_op = opt.apply_gradients(grads_and_vars, global_step)
+```
+
+The `if..else` means under multi-GPU, the gradient should be scaled through `1.0/params.update_cycle`, which is the average via  `update_cycle`. 
 
 #### B. Training process
 
