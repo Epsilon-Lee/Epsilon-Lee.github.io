@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Research Diary from Feb. 2 - to Feb. 25"
+title: "Research Diary from Feb. 20 - to Feb. 25"
 author: Guanlin Li
 tag: diary
 ---
