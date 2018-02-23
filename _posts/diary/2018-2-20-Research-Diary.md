@@ -41,3 +41,36 @@ Today, I have a happy morning during my flight with reading of Yoshua's great bo
 Then I read Alain de Botton's book 'The Art of Travel' which is full of wisdom. [TO-DO tomorrow]. 
 
 In the afternoon, I read through Zhirui's ACL papers and gave some advice on revision. And tomorrow I will meet with him and have a nice chat! 
+
+>Some must read papers for curriculum learning. 
+>
+>- [Original paper by Yoshua Bengio](https://ronan.collobert.com/pub/matos/2009_curriculum_icml.pdf), ICML 2009. 
+>- [Self-paced learning which criticized curriculum learning](http://ai.stanford.edu/~pawan/publications/KPK-NIPS2010.pdf), NIPS 2010. 
+>  - [Self-paced learning with diversity](https://papers.nips.cc/paper/5568-self-paced-learning-with-diversity.pdf), NIPS 2014. 
+>
+>To research on mxent principle compared with mle principle, I think one way is to draw analogy between Hidden Markov Model and [Maximum](http://www.ai.mit.edu/courses/6.891-nlp/READINGS/maxent.pdf) [Entropy](http://www.aclweb.org/anthology/W96-0213) [Markov](http://www.aclweb.org/anthology/W02-1001) [Model](http://www.aclweb.org/anthology/P02-1038). 
+
+
+
+#### Feb. 23
+
+[9:07am] **Structural bias in NMT**: recent progress
+
+- Syntax knowledge
+  - [Towards String-to-Tree Neural Machine Translation](), Yoav Goldberg et al. ACL 2017. 
+  - [Learning to Parse and Translate Improves Neural Machine Translation](), Kyunghyun Cho et al. ACL 2017. 
+  - [Improved NMT with a Syntax-Aware Encoder and Decoder](), Shujian Huang et al. ACL 2017. 
+  - [Incorporating Word Reordering Knowledge into Attention-based NMT](), Qun Liu et al. ACL 2017. 
+  - [Modeling Source Syntax for NMT](), Junhui Li et al. ACL 2017. 
+  - [Towards Bidirectional Hierarchical Representations for Attention-based NMT](), Baosong's work, EMNLP 2017. 
+  - [Graph Convolutional Encoders for Syntax-aware NMT](), Ivan Titov et al. EMNLP 2017. 
+  - [NMT with Source Dependency Representations](), Kehai's work. EMNLP 2017. 
+- Shallow syntax knowledge
+- Latent structure knowledge
+  - [NMT with Source-side Latent Graph Parsing](), EMNLP 2017. 
+- BOW, phrase table knowledge
+  - [Incorporating Discrete Translation Lexicons into NMT](), Neubig's group, EMNLP 2016.
+  - [Neural Machine Translation with Word Prediction](), Shujian Huang et al. EMNLP 2017. 
+  - [Memory-augmented NMT](), Yang Feng et al. EMNLP 2017. 
+  - [Translating Phrases in NMT](), Xing's work, EMNLP 2017. 
+
