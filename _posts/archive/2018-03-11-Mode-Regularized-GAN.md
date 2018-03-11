@@ -1,6 +1,6 @@
 ---
-layout: list
-title: “Mode Regularization for GANs"
+layout: post
+title: Mode Regularization for GANs
 author: Guanlin Li
 tag: archive
 ---
