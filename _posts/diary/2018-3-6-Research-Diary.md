@@ -75,6 +75,15 @@ $$X \sim \Gamma(\alpha, \beta)$$, and set $$\lambda = \frac{1}{\beta}$$, then $$
 
 - Density form: $$f(x) = \frac{x^{(\alpha - 1)} \lambda^\alpha \exp^{(-\lambda x)}}{\Gamma(\alpha)}$$
 
-- #### $$x > 0$$
+- #### $x > 0$
 
 - Additive property: if $$X_1 \sim \Gamma(\alpha_1, \lambda), X_2 \sim \Gamma(\alpha_2, \lambda)$$, then $$X_1 + X_2 \sim \Gamma(\alpha_1 + \alpha_2, \lambda)$$
+
+
+
+### Mar. 10
+
+[3:00pm] **BPE rethinking.** 
+
+- <u>Joint BPE</u>: first merge the corpus, and then merge `vocab_size - one_gram_size` number. This will share two language with the common/intersected lexicon so as to make the shared lexicon have shared segmentation. 
+- The BPE algorithm works as: after every greedy merge operation between the highest two frequency token A, B to AB, we should re-estimate the number of AB in the corpus and minus their counts into the count of A and B. 
