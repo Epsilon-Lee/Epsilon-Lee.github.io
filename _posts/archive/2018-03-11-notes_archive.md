@@ -1,8 +1,7 @@
 ---
-layout: post
+layout: list
 title: "Notes Archive"
 author: Guanlin Li
 tag: archive
 ---
 
-- [Expectation, Maximization]
