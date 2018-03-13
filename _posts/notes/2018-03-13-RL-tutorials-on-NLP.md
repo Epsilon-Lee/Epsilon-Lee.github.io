@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Reinforcement Learning Tutorial and Basic Materials: with on emphasis on NLP
+title: "Reinforcement Learning Tutorial and Basic Materials: with on emphasis on NLP"
 author: Guanlin Li
 tag: notes
 ---
