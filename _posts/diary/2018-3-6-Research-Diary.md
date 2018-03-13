@@ -87,3 +87,14 @@ $$X \sim \Gamma(\alpha, \beta)$$, and set $$\lambda = \frac{1}{\beta}$$, then $$
 
 - <u>Joint BPE</u>: first merge the corpus, and then merge `vocab_size - one_gram_size` number. This will share two language with the common/intersected lexicon so as to make the shared lexicon have shared segmentation. 
 - The BPE algorithm works as: after every greedy merge operation between the highest two frequency token A, B to AB, we should re-estimate the number of AB in the corpus and minus their counts into the count of A and B. 
+
+### Mar. 11
+
+[4:28pm] Some papers to read. 
+
+- A gentle tutorial of the EM algorithm and its application to parameter estimation for GM and HMM. 
+
+
+- Michael Collins' notes on IBM Models. 
+- HMM based word alignment. 
+- Nonparametric Word Segmentation for Machine Translation. COLING 10. 
