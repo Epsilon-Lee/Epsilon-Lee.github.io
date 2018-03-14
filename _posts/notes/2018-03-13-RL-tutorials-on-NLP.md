@@ -58,3 +58,9 @@ tag: notes
 
 - [Improving Information Extraction by Acquiring External Evidence with Reinforcement Learning](https://arxiv.org/abs/1603.07954), EMNLP 2016 best paper. 
 - [Learning how to Active Learn: A Deep Reinforcement Learning Approach](https://arxiv.org/abs/1708.02383), EMNLP 2017. 
+
+#### 3.5. Inverse RL connected with GANs
+
+- [[A connection between generative adversarial networks, inverse reinforcement learning, and energy-based models](https://arxiv.org/abs/1611.03852)](https://arxiv.org/abs/1611.03852), NIPS 2016 workshop. 
+- [Connecting Generative Adversarial Networks and Actor-Critic Methods](https://arxiv.org/abs/1610.01945), NIPS 2017 workshop. 
+

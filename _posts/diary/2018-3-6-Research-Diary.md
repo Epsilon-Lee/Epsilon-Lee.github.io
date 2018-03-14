@@ -41,7 +41,7 @@ Through [wikipedia](https://en.wikipedia.org/wiki/IBM_alignment_models).
 
 [12:57] Some papers on arXiv.
 
-- [Analyzing Uncertainty in NMT](), Facebook AI Research team. 
+- [Analyzing Uncertainty in NMT](https://arxiv.org/pdf/1803.00047.pdf), Facebook AI Research team. 
 
   - Lack of understanding such as:
 
@@ -98,3 +98,4 @@ $$X \sim \Gamma(\alpha, \beta)$$, and set $$\lambda = \frac{1}{\beta}$$, then $$
 - Michael Collins' notes on IBM Models. 
 - HMM based word alignment. 
 - Nonparametric Word Segmentation for Machine Translation. COLING 10. 
+
