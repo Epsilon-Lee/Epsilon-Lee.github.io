@@ -98,4 +98,3 @@ $$X \sim \Gamma(\alpha, \beta)$$, and set $$\lambda = \frac{1}{\beta}$$, then $$
 - Michael Collins' notes on IBM Models. 
 - HMM based word alignment. 
 - Nonparametric Word Segmentation for Machine Translation. COLING 10. 
-
