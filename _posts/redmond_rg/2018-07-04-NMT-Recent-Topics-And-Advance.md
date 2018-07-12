@@ -47,3 +47,9 @@ tag: redmond_rg
 
 - EMNLP 2016, [Online Segment to Segment Neural Transduction](https://aclweb.org/anthology/D/D16/D16-1138.pdf). 
 - ICLR 2018, [Towards Neural Phrase-based Machine Translation](https://openreview.net/pdf?id=HktJec1RZ). [github](https://github.com/posenhuang/NPMT). 
+
+
+### Fast Softmax
+
+- AISTAT 2017, [Complementary Sum Sampling for Likelihood Approximation in Large Scale Classification](http://proceedings.mlr.press/v54/botev17a/botev17a.pdf). 
+- NIPS 2017, [SVD-Softmax: Fast Softmax Approximation on Large Vocabulary Neural Networks](https://papers.nips.cc/paper/7130-svd-softmax-fast-softmax-approximation-on-large-vocabulary-neural-networks.pdf). 
