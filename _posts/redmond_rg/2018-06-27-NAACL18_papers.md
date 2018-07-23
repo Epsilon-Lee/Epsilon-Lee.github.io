@@ -27,6 +27,6 @@ This week's reading list is below:
 - [Few-Shot Learning Through an Information-Retrieval Lens](https://papers.nips.cc/paper/6820-few-shot-learning-through-an-information-retrieval-lens.pdf), NIPS 2017. 
   - Presenter: Guanlin Li
 
-- [Complementary Sum Sampling for Likelihood Approximation in Large Scale Classification]()(http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/AISTATS2017.pdf), AISTATS 2017. 
+- [Complementary Sum Sampling for Likelihood Approximation in Large Scale Classification](http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/AISTATS2017.pdf), AISTATS 2017. 
 - [Deep Generative Model for Joint Alignment and Word Representation](http://aclweb.org/anthology/N18-1092), NAACL 2018. 
   - Presenter: Xintong Li
