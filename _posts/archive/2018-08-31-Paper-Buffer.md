@@ -11,6 +11,8 @@ Happy knowing the rapid world ^_^
 
 > I would like in the near future, tags are designed to do knowledge classification. 
 
+#### Unread list
+
 - [Prediction with a Short Memory](https://theory.stanford.edu/~valiant/papers/Pred_Mem.pdf), STOC 2018. 
   - A [blog post as well](https://theorydish.blog/2017/11/29/prediction-with-a-short-memory/). 
 - [Adversarial Distillation of Bayesian Neural Network Posteriors](https://arxiv.org/pdf/1806.10317.pdf), ICML 2018. 
@@ -23,3 +25,9 @@ Happy knowing the rapid world ^_^
   - "We are finally getting somewhere." --Danial Roy. 
 - [A case for deep learning in semantics](http://web.stanford.edu/~cgpotts/temp/pater-commentary-by-potts.pdf), Chris Potts 2018. 
 - [The Seven Tools of Causal Inference with Reflections on Machine Learning](http://ftp.cs.ucla.edu/pub/stat_ser/r481.pdf), Judea Pearl, July 2018. 
+- [Latent Alignment and Variational Attention](https://arxiv.org/pdf/1807.03756.pdf), Harvard Univ.'s NLP. 
+  - Posterior inference over alignment, compared to other traditional statistical alignment methods. My question arised is that, what is the goodness or weakness of a explicit probabilistic modeling or implicit inference-based alignment methods, like Xintong's Prediction Difference. 
+
+#### Read list
+
+- [Logarithmic Time One-Against-Some](http://proceedings.mlr.press/v70/daume17a/daume17a.pdf), NIPS/ICML 2017. 
