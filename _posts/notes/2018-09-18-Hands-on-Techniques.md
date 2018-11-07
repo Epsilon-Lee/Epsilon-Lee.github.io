@@ -14,8 +14,11 @@ lsb_release -a
 ```
 - Look up the disk space of the current directory
 ```bash
-du -h $dir_path
+du -h --max-depth=1 $dir_path
+df -h  # show the disk usage of the whole system
 ```
+
+
 ## Conda
 
 - Rename an environment
