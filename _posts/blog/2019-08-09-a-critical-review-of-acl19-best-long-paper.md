@@ -3,7 +3,7 @@ layout: post
 title: "A Critical Review of ACL 2019 Best Long Paper"
 author: Guanlin Li
 tag: blog
-visible: 1
+visible: 0
 ---
 
 [TOC]
