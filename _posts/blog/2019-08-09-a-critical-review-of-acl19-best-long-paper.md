@@ -6,7 +6,7 @@ tag: blog
 visible: 0
 ---
 
-[TOC]
+
 
 ### Causality
 

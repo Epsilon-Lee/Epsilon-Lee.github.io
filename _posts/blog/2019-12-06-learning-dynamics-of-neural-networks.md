@@ -5,7 +5,7 @@ author: Guanlin Li
 tag: blog
 ---
 
-[TOC]
+
 
 > This review is targeted on our recent project of analyzing learning dynamics for Neural Machine Translation (NMT) models. When I first try to grasp a taste of the related literature in **understanding learning dynamics of NN**, I find it is a very new directions in current pursuit for the theory of deep learning. So it is necessary for a brief review of bunch of works for this topic.
 
