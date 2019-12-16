@@ -49,3 +49,4 @@ Unfortunately, these bounds are:
 So the authors want to take a step-back to understand what those bounds capture in realistic situation, in light of their limitations. This leads to their first finding:
 
 - bounds grow with training set size;
+
