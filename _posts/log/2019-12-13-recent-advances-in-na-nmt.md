@@ -367,7 +367,7 @@ In essence, KERMIT resembles BERT and all other holistic seq2seq models (e.g. ma
 
 [Insertion-based Decoding with automatically Inferred Generation Order](https://arxiv.org/pdf/1902.01370.pdf), arXiv Feb. 2019, comes after Jiatao Gu's seminal [NAT](#the-original-paper) paper with the same author. Different from the following [Levenshtein Transformer](#levenshtein-transformer) paper, this paper mainly focus on discussing the generation order of the target labels $$y=(y_1, y_2, \dots, y_n)$$ based on the **insertion** action instead of deletion or substitution as discussed below.
 
-![insertion_flexible_order_illustration](_posts/log//fig/insertion_flexible_order_illustration.png)
+![insertion_flexible_order_illustration](/fig/insertion_flexible_order_illustration.png)
 
 As shown in the above figure, the insertion mechanism is very similar to [3]. The beginning canvas only have `<s>` and `</s>` symbols and the first word is inserted at the first position in between, and the following words are inserted in between previously generated words.
 
