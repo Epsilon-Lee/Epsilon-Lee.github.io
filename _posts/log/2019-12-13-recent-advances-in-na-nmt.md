@@ -303,7 +303,7 @@ Then the authors come up with the following procedure for reliably inference wit
   - $$\hat{y}_{t + i} = \arg \max p_1 (y_{t + i} \vert \hat{y}_{\leq t+i-1}, x)$$
 - **Accept**: extend $$\hat{y}$$ with $$\hat{y}_{t+1}, \dots, \hat{y}_{t+\hat{k}}$$.
 
-![parallel_decoding_illustration](_posts/log/fig/parallel_decoding_illustration.png)
+![parallel_decoding_illustration](../../public/img/fig/parallel_decoding_illustration.png)
 
 > **The most important note.**
 >
@@ -313,7 +313,7 @@ Then the authors come up with the following procedure for reliably inference wit
 
 Since the model is supposed to generate <u>a block of words</u> instead of a single word at each decoding step, so the decoder architecture is modeled with a multi-out structure shown in the following figure.
 
-![parallel_decoding_decoder_arch_each_timestep](_posts/log//fig/parallel_decoding_decoder_arch_each_timestep.png)
+![parallel_decoding_decoder_arch_each_timestep](../../public/img/fig/parallel_decoding_decoder_arch_each_timestep.png)
 
 Similarly, there is an concurrent work from Alibaba Research Group named "Semi-autoregressive Neural Machine Translation" [8], who use similar block-wise decoding strategy but **without verification**.
 
@@ -345,13 +345,13 @@ Although the multi-out model can be executed only once for the $$k$$, but the ve
 >
 > This paper proposes a new modeling method for $$p(y \vert x)$$ as the factorization among content ($$c=\text{'cat'}$$ ) and location ($$l=2$$) as $$p(c, l \vert x, \hat{y}_t)$$, where the $$\hat{h}_t$$ denoting the decoding history of all tuples $$(c, l)$$ till time-step $$t$$; by proposing architectural modification from the original Transformer (Sec. 3.1) and several **label ordering** strategies (e.g. balanced binary tree) for constructing prefix $$\hat{y}_t$$ for loss calculation (Sec. 4) as well as parallel decoding during inference, they can train their proposed model variants up-to 27.41 BLEU score on WMT14 En-De (comparable with Transformer base). As its biggest contribution, their **parallel decoding** have an ideally $$\log n$$ complexity (decoding steps/iterations) compared to the common left-to-right modeling. Moreover, **EOS penalty** as a margin between the eos token and the second-largest-probability token $$\beta$$ is very essential to the performance success (contributing to 4 BLEU scores the most).
 
-![insertion_transformer](_posts/log/fig/insertion_transformer.png)
+![insertion_transformer](../../public/img/fig/insertion_transformer.png)
 
 The above figure are the two decoding modes, i.e. greedy (sequential) decoding and parallel decoding. Following are two examples for the balanced binary tree label (target) generation order in parallel decoding mode and for greedy decoding mode (with uniform loss):
 
-![insertion_transformer_example1](_posts/log/fig/insertion_transformer_example1.png)
+![insertion_transformer_example1](../../public/img/fig/insertion_transformer_example1.png)
 
-![insertion_transformer_example2](_posts/log/fig/insertion_transformer_example2.png)
+![insertion_transformer_example2](../../public/img/fig/insertion_transformer_example2.png)
 
 ##### Insertion-based generative sequence model
 
