@@ -12,6 +12,7 @@ typora-root-url: ..\..
   * [The original paper](#the-original-paper)
   * [Block-wise modeling](#block-wise-modeling)
   * [Insertion-based modeling](#insertion-based-modeling)
+  * [Structured inference](#structured-inference)
 * [Reference](#reference)
 
 ### Papers in summary
@@ -288,7 +289,7 @@ The `forward` function in `class NATransformerModel` is as follows:
 
 > "This allows for substantial theoretical improvements in generation speed when applied to architectures that can process output sequence in parallel."
 
-Their initial speed up is $\times 2$, without loss of performance for NMT compared to a greedy non-parallel autoregressive decoder.
+Their initial speed up is $$\times 2$$, without loss of performance for NMT compared to a greedy non-parallel autoregressive decoder.
 
 > One common feature among recent architectures such as the Transformer and convolutional sequence-to-sequence models is an increased capacity for parallel computation. [...] While advances in this direction have allowed for significantly faster training, outputs are still generated one token at a time during inference, [...] in light of this limitation, a growing body of work is concerned with different approaches to accelerating generation for autoregressive models.
 
@@ -335,6 +336,59 @@ Although the multi-out model can be executed only once for the $$k$$, but the ve
 
 
 
+##### Fast decoding using compressed output as target
+
+[Fast Decoding in Sequence Models Using Discrete Latent Variables](https://arxiv.org/pdf/1803.03382.pdf), ICML 2018.
+
+This paper comes out concurrently with [1]. However, unlike [1] who goes to the extreme of modeling no label dependency, this paper tries to accelerate inference through firstly generate a **short** latent sequence autoregressiely and then based on which to emit the whole sequence in a parallel way.
+
+> "For the above strategy to work, we need to **autoencode** the target sequence  $$y1, \dots, y_n$$ into a shorter sequence $$l_1, \dots, l_m$$ [...] we prefer the sequence $$l_1, \dots, l_m$$ to be discrete, as we use standard autoregressive models to predict it."
+>
+> "By using DVQ (decomposed vector quantization) or improved semantic hashing, we are able to create a neural machine translation model that achieves good BLEU scores on the standard benchmarks while being an order of magnitude faster at decoding time than autoregressive models."
+>
+> **Relation to [1]**
+>
+> "Their techniques are hand-tuned for translation and require training with reinforcement learning. Our latent variables are learned and the model is trained end-to-end, so it can be applied to any sequence problem."
+
+**Discretizstion techniques** (Section 2 of the paper)
+
+$$y$$ is encoded by $$\text{enc}$$ to produce a *single* continuous latent representations ($$\text{enc}(y) \in \mathbb{R}^D$$), where $$D$$ is the dimension of the latent space. Let $$K$$ be the size of the discrete latent space and let $$[K]$$ denotes $$\{1, 2, \dots, K\}$$. So the goal for discretizing $$\text{enc}(y)$$ is to map it onto certain integer in $$[K]$$. However, this can have severe problem since $$y$$ is a sentence which have strong compositional meaning, so use one integer to indicate its meaning is very crude and sparse. So the authors propose to decompose the large vector $$\text{y} \in \mathbb{R}^D$$ into $$n_d$$ smaller slices:
+
+$$\text{enc}^1(y) \circ \text{enc}^2(y) \circ \dots \circ \text{enc}^{n_d}(y),$$
+
+and for each slice we use the technique from VQ-VAE to discretize it onto $$[K]$$:
+
+$$z^i_q(y) = e^i_{k_i},$$
+
+$$k_i = \arg \min_{j \in [K]} \vert\vert \text{enc^i{y} - e^i_j} \vert\vert_{2},$$
+
+Where $$e^i_{k_i}$$ is a learnable vector from a finite (size $$K$$) code book.
+
+**Modeling - Latent Transformer**
+
+Three components with two losses for training.
+
+- The function $$ae(y, x)$$ will autoencode $$y=(y_1, \dots, y_n)$$ into a shorter sequence $$l=(l_1, \dots, l_m)$$ of discrete latent variables using the discretization techniques discussed and developed in this paper;
+- The latent prediction model $$lp(x)$$ (a Transformer) will autoregressively predict $$l$$ based on $$x$$;
+- The decoder $$ad(l, x)$$ is a **parallel** model that will decode $$y$$ from $$l$$ and the input sequence $$x$$; 
+
+> The function $$ae(y, x)$$ and $$ad(l, x)$$ together form an autoencoder of the target $$y$$ that <u>has additional access to the input sequence</u> $$x$$.
+
+- The autoencoder reconstruction loss $$l_r$$ coming from $$l = ae(y, x)$$ and $$\hat{y} = ad(l, x)$$:
+  - $$ad(ae(y, x))$$ to $$y$$;
+- The latent prediction loss $$l_p$$ that comes from comparing $$l = ae(y, x)$$ to the generated $$\hat{l} = lp(x)$$.
+
+![fast_decoding_illustration](../../public/img/fig/fast_decoding_illustration.png)
+
+The above is a dependence graph instead of the causal graphical diagram.
+
+**Parameterization and training**
+
+- $$ae(y, x)$$ is a stack of residual convolutions followed by an attention layer attending to $$x$$ and a stack of strided convolutions.
+- Joint training, but with $$y$$ as the target of $$lp(x)$$ first, using MLE.
+
+
+
 #### Insertion-based modeling
 
 #####  Insertion Transformer
@@ -352,6 +406,16 @@ The above figure are the two decoding modes, i.e. greedy (sequential) decoding a
 ![insertion_transformer_example1](../../public/img/fig/insertion_transformer_example1.png)
 
 ![insertion_transformer_example2](../../public/img/fig/insertion_transformer_example2.png)
+
+**Modeling**
+
+
+
+**Parallel decoding**
+
+
+
+
 
 ##### Insertion-based generative sequence model
 
@@ -373,6 +437,34 @@ As shown in the above figure, the insertion mechanism is very similar to [3]. Th
 
 Same with [3], the insertion order should follow certain principles to ease learning via **pre-defined generation orders**.
 
+> **Difference with others**
+>
+> There are two concurrent paper [3], [9] that study sequence generation in a non-L2R manner. 
+>
+> [9]  proposes a tree-like generation algorithm, which the authors claim that [9] only cover a small portion of generation order in theory. (I agree with this partially, due to this paper use a pre-trained order generator to sample orders, which may restrict the exploration)
+>
+> [3] proposes a very similar idea with this paper. "The major difference is that they directly use absolute positions, whereas ours utilizes relative positions." So [3] should re-encode the generated sequence (canvas) at after a new word is generated and added to the canvas. Instead, this work reuse the previously encoded sequence of representations by their special design of position representation.
+
+**Modeling**
+
+
+
+**Relative positions**
+
+
+
+
+
+##### Non-monotonic Sequential Text Generation
+
+[Non-monotonic Sequential Text Generation](https://arxiv.org/pdf/1902.02192.pdf) comes out this year's ICML (2019). As the author claim:
+
+> "the model directly learns good orders, without any additional annotation"
+
+> "Our framework operates by generating a word at an arbitrary position, and then recursively generating words to its left and then words to its right, yielding a binary tree"
+
+> "Learning is framed as imitation learning, including a coaching method which moves from imitating an oracle to reinforcing the policy's own preferences."
+
 
 
 ##### Levenshtein Transformer
@@ -384,6 +476,33 @@ Beyond insertion, this paper also models deletion operation as another global ac
 **The underlying framework - MDP**
 
 **Two actions: deletion & insertion**
+
+
+
+#### Structured inference
+
+Structured inference for sequence-to-sequence model is a very timely direction to explore due to the traditional common wisdom of the trade-off between model error and search error for structured prediction problems.
+
+**CRF-based post-hoc exact inference**
+
+[Fast Structured Decoding for Sequence Models](https://arxiv.org/pdf/1910.11555.pdf) (NeurIPS 2019) is the paper who start to search for an **exact** search-based modeling for sequence-to-sequence models.
+
+**Motivation**
+
+This work comes into being based on two states of the current label dependency modeling literature:
+
+1. autoregressive factorization suffers from heavy latency during inference;
+2. Non-autoregressive modeling achieves inferior accuracy to their autoregressive counterparts.
+
+> "To improve the decoding consistency and reduce the inference cost at the same time, we propose to incorporate a structured inference module into the non-autoregressive models."
+
+![fast_struct_decoding_illustration](../../public/img/fig/fast_struct_decoding_illustration.png)
+
+
+
+
+
+
 
 
 
@@ -399,10 +518,18 @@ Beyond insertion, this paper also models deletion operation as another global ac
 
 [4]. [KERMIT: Generative Insertion-based Modeling for Sequences](https://arxiv.org/pdf/1906.01604.pdf), William Chan, Nikita Kitaev, Kelvin Guu, Mitchell Stern, Jakob Uszkoreit, arXiv June 4 2019.
 
-[5]. [Insertion-based Decoding with automatically Inferred Generation Order](https://arxiv.org/pdf/1902.01370.pdf), Jiatao Gu, Qi Liu, Kyunghyun Cho, arXiv Feb. 2019.
+[5]. [Insertion-based Decoding with automatically Inferred Generation Order](https://arxiv.org/pdf/1902.01370.pdf), Jiatao Gu, Qi Liu, Kyunghyun Cho, arXiv Feb. 2019. (TACL 2019)
 
 [6]. [Levenshtein Transformer](https://arxiv.org/pdf/1905.11006.pdf), Jiatao Gu, Changhan Wang, Jake Zhao, NeurIPS 2019.
 
 [7]. [Understanding Knowledge Distillation in Non-autoregressive Machine Translation](https://arxiv.org/abs/1911.02727), arXiv Nov. 7 2019.
 
 [8]. [Semi-Autoregressive Neural Machine Translation](https://arxiv.org/abs/1808.08583), EMNLP 2018.
+
+[9]. [Non-Monotonic Sequential Text Generation](https://arxiv.org/pdf/1902.02192.pdf), ICML 2019, Hal Daume III's group.
+
+[10]. [Deterministic Non-Autoregressive Neural Sequence Modeling by Iterative Refinement](https://arxiv.org/abs/1802.06901), EMNLP 2018.
+
+[11]. [Fast Decoding in Sequence Models Using Discrete Latent Variables](https://arxiv.org/pdf/1803.03382.pdf), ICML 2018.
+
+[12]. [Fast Structured Decoding for Sequence Models](https://arxiv.org/pdf/1910.11555.pdf), NeurIPS 2019.
