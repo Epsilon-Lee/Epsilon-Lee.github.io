@@ -66,7 +66,7 @@ During the time interning at Tencent AI Lab, I have encountered a lot of friends
 
 [Changlong Yu]() who is currently my friend who can chat with, walk with and discuss with. I learned how to live a work-life balanced life. Since he is an expert in knowledge-oriented NLP which I think is the most. challenging topics at this deep learning era, we chat a lot about how to use prior knowledge to regularise modeling learning, how to use symbolic knowledge to understand black-box model behavior and how to devise new knowledge-powered tasks for pushing forward the field of natural language understanding. Those chats are very engaging and I wish we can cooperate for a survey paper on this topic in the near future.
 
-Other friends who I learned and will learn a lot from are Jiaxing Wang, Baosong Yang, Shilin He, Tianxiang Zhao, Ziyi Dou, Mengzhou Xia, Deng Cai, Huayang Li, Zhirui Zhang, Wenhu Chen et al. I wish them a brighter 2020.
+Other friends who I learned and will learn a lot from are Jiaxing Wang, Baosong Yang, Shilin He, Tianxiang Zhao, Ziyi Dou, Mengzhou Xia, Xin Li, Deng Cai, Huayang Li, Zhirui Zhang, Wenhu Chen et al. I wish them a brighter 2020.
 
 #### Wish list
 
