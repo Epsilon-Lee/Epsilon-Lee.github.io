@@ -2,7 +2,7 @@
 layout: post
 title: "A Summary of Year 2019: From research to life"
 author: Guanlin Li
-tag: diary
+tag: blog
 ---
 
 > When browsing the Twitter today, I find many people (especially AI researchers) are posting their new year summary and wish list (e.g. Yoav Goldberg were posting his [wish list](https://twitter.com/yoavgo/status/1205987145112051713) of 2020 for NLP research). Pointed out by my friend Changlong, I find [Chiyuan Zhang](http://freemind.pluskid.org/)'s blog very intriguing and motivating. As the first wish on my wish list, I wish to finish this blog post at the beginning moment of 2020, let's see...
