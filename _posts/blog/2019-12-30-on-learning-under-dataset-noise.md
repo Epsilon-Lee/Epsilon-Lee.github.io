@@ -9,7 +9,7 @@ I am extremely curious about how *data* or *experience* drives the model to lear
 
 > Note that, learning under noise is highly correlated with topics like curriculum learning, data augmentation, *data selection* and active learning, which may or may not be covered in this post, based on which I hope one day I would write something about.
 
-I want to do this summary due to the very paper named:
+I want to do this summary due to the very paper named (and the blog [post](https://l7.curtisnorthcutt.com/confident-learning)):
 
 - [Confident Learning: Estimating Uncertainty in Dataset Labels](https://arxiv.org/pdf/1911.00068.pdf), which has submitted to *AISTATS 2020*.
 
@@ -27,8 +27,7 @@ One thing that really interests me is their so-called **model-agnostic dataset u
 
 **Learning under noise**
 
-- [Understanding and Utilizing Deep Neural Networks
-  Trained with Noisy Labels](http://proceedings.mlr.press/v97/chen19g/chen19g.pdf), ICML 2019.
+- [Understanding and Utilizing Deep Neural Networks Trained with Noisy Labels](http://proceedings.mlr.press/v97/chen19g/chen19g.pdf), ICML 2019.
 - [Unsupervised Label Noise Modeling and Loss Correction](http://proceedings.mlr.press/v97/arazo19a/arazo19a.pdf), ICML 2019.
 - [Learning with Bad Training Data via Iterative Trimmed Loss Minimization](http://proceedings.mlr.press/v97/shen19e/shen19e.pdf), ICML 2019.
 
@@ -39,6 +38,9 @@ One thing that really interests me is their so-called **model-agnostic dataset u
 **Data selection**
 
 - [Learning and Data Selection in Big Datasets](http://proceedings.mlr.press/v97/ghadikolaei19a/ghadikolaei19a.pdf), ICML 2019.
-
 - [Metric-Optimized Example Weights](http://proceedings.mlr.press/v97/zhao19b/zhao19b.pdf), ICML 2019.
+
+**Curriculum learning**
+
+- [Self-Similar Epochs: Value in Arrangement](http://proceedings.mlr.press/v97/buchnik19a/buchnik19a.pdf), ICML 2019.
 

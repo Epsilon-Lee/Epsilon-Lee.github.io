@@ -31,3 +31,4 @@ Happy knowing the rapid world ^_^
 #### Read list
 
 - [Logarithmic Time One-Against-Some](http://proceedings.mlr.press/v70/daume17a/daume17a.pdf), NIPS/ICML 2017. 
+
