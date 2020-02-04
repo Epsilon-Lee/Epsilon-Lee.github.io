@@ -10,7 +10,8 @@ tag: blog
 * [Construct benchmark data](#construct-benchmark-data)
 * [Problem dimensions](#problem-dimensions)
 * [Performance overview](#performance-overview)
-* [Reference][#reference]
+* [Initialization comparison](#initialization-comparison)
+* [Reference](#reference)
 
 ---
 
