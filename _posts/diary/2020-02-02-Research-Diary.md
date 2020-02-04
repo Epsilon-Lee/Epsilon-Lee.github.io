@@ -8,12 +8,12 @@ tag: diary
 **Table of Content**
 
 * [2/2/2020](#2/2/2020)
-* [3/2/2020](#3/2/2020)
-* [4/2/2020](#3/2/2020)
-* [5/2/2020](#3/2/2020)
-* [6/2/2020](#3/2/2020)
-* [7/2/2020](#3/2/2020)
-* [8/2/2020](#3/2/2020)
+* [3-22020](#3-2-2020)
+* [4/2/2020](#4/2/2020)
+* [5/2/2020](#5/2/2020)
+* [6/2/2020](#6/2/2020)
+* [7/2/2020](#7/2/2020)
+* [8/2/2020](#8/2/2020)
 
 ### 2/2/2020
 
@@ -87,7 +87,7 @@ In `qqdocs`, we also detailed on certain loss dynamics analysis settings.
 
 
 
-### 3/2/2020
+### 3-2-2020
 
 > Monday, it's the new start working day of the year 2020.
 
@@ -156,4 +156,3 @@ I think there are at least two questions our community of MT would be interested
 1. Work on the `Demystifying Learning of UNMT` project.
 2. Prepare the coding interview on next Friday.
 3. Practice guitar and TABS writing in guitar pro 7.5.
-
