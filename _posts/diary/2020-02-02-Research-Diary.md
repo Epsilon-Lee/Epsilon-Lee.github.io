@@ -7,15 +7,15 @@ tag: diary
 
 **Table of Content**
 
-* [2/2/2020](#2/2/2020)
+* [2-2-2020](#2-2-2020)
 * [3-2-2020](#3-2-2020)
-* [4/2/2020](#4/2/2020)
-* [5/2/2020](#5/2/2020)
-* [6/2/2020](#6/2/2020)
-* [7/2/2020](#7/2/2020)
-* [8/2/2020](#8/2/2020)
+* [4-2-2020](#4-2-2020)
+* [5-2-2020](#5-2-2020)
+* [6-2-2020](#6-2-2020)
+* [7-2-2020](#7-2-2020)
+* [8-2-2020](#8-2-2020)
 
-### 2/2/2020
+### 2-2-2020
 
 > Sunday, actually should go back to Shenzhen, but...
 
@@ -145,7 +145,7 @@ I think there are at least two questions our community of MT would be interested
 
 
 
-### 4/2/2020
+### 4-2-2020
 
 > I received response email from Amazon for resetting the coding interview opportunity. Cheers and face it, bud!
 
