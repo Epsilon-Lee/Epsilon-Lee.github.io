@@ -131,7 +131,7 @@ I think there are at least two questions our community of MT would be interested
      - the interaction of multiple loss functions: the ablation of loss functions under different initialization methods
        - **Q**: *Can we reproduce the zero BLEU performance of emnlp best paper?*
        - **Q**: How to use *signal-noise ratio* of learning to interpret the success and failure of the learning?
-       - *Charaterize* and *compare* the learning of unsupervised and supervised model
+       - *Charaterize* and *compare* the learning of unsupervised and supervised model.
 
 
 
@@ -156,3 +156,52 @@ I think there are at least two questions our community of MT would be interested
 1. Work on the `Demystifying Learning of UNMT` project.
 2. Prepare the coding interview on next Friday.
 3. Practice guitar and TABS writing in guitar pro 7.5.
+
+---
+
+#### Experimentation
+
+1. <u>Apply for 4 GPUs;</u>
+
+2. <del><u>Run the XLM code with:</u> </del>
+
+   - provided pretrained embeddings, and 
+
+   - the holistic initial weights of the model under default data setting (as in the XLM paper);
+
+
+
+
+
+### 5-2-2020
+
+> I haven't reply the email, I think I should reply tomorrow.
+
+#### Experimentation
+
+1. Run the XLM code with **pain**
+   - The `dico` object (the dictionary) is binarized with the `train`ning data via `preprocess.py` into the `train.xxx.pth` file, and the `dico` object in it should be the same with the text dictionary file in the same folder.
+   - Multi-GPU with `torch.distributed.launch` get stuck when I assign the `MASTER_ADDR`, `MASTER_PORT`, `RANK` to the `train.py`.
+
+
+
+### 6-2-2020
+
+> `TODO`
+
+1. **Read and understand the XLM code**
+
+   - Some specific questions:
+     - How to construct and use the data iterator?
+       - `get_iterator()`, `get_batch()` function in `trainer.py`
+     - How to construct the loss?
+       - Why in `transformer.py` in the `PredLayer` class, the loss is computed using `F.cross_entropy`? **A**: `torch.nn.functional.cross_entropy()` combines `log_softmax()` and `nll_loss` in a single function, so it can be used for multi-class classification.
+
+   - **Q1**. How to reload from checkpoint? How to restore from `ctrl-c`interruption?
+   - **Q2**. How to pretrain the embedding and the cross-lingual projection?
+   - **Q3**. How to reload the embedding matrix into the enc-dec model for UNMT fine-tuning?
+   - **Q4**. How to reload the XLM pretrained model into the enc-dec model for UNMT fine-tuning?
+
+2. etc.
+
+   
