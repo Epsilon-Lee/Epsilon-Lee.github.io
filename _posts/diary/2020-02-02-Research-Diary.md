@@ -169,7 +169,11 @@ I think there are at least two questions our community of MT would be interested
 
    - the holistic initial weights of the model under default data setting (as in the XLM paper);
 
+---
 
+#### Miscs
+
+- [Is the future of Neural Networks Sparse? An Introduction](https://medium.com/huggingface/is-the-future-of-neural-networks-sparse-an-introduction-1-n-d03923ecbd70), an medium blog post form Hugging Face on the topic of sparsity principle of NNs.
 
 
 
@@ -202,6 +206,10 @@ I think there are at least two questions our community of MT would be interested
    - **Q3**. How to reload the embedding matrix into the enc-dec model for UNMT fine-tuning?
    - **Q4**. How to reload the XLM pretrained model into the enc-dec model for UNMT fine-tuning?
 
-2. etc.
+2. Reread [Do We Really Need Fully Unsupervised Cross-Lingual Embeddings?](https://arxiv.org/abs/1909.01638) and [Comparing Unsupervised Word Translation Methods Step by Step](http://papers.nips.cc/paper/8836-comparing-unsupervised-word-translation-methods-step-by-step.pdf) and do the following two things:
+
+   a. Try to understand the possibility or **limit** of unsupervised bi-lexicon induction through the distribution matching principle;
+
+   b. Try to find and arrange *more papers* related to our understanding of UNMT.
 
    
