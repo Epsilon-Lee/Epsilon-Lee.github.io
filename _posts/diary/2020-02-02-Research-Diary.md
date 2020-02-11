@@ -213,3 +213,18 @@ I think there are at least two questions our community of MT would be interested
    b. Try to find and arrange *more papers* related to our understanding of UNMT.
 
    
+
+### 7-2-2020
+
+1. Train word embeddings for `en-fr` joint vocabulary preprocessed through BPE, using `fastText`:
+   - Get familiar to `fastText` code interface;
+2. <del>Finish `6-2-2020`'s second `2` todo entry;</del>
+
+---
+
+#### <del>Miscs</del>
+
+
+
+### <del>8-2-2020</del>
+
