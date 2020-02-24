@@ -30,6 +30,9 @@ One thing that really interests me is their so-called **model-agnostic dataset u
 - [Understanding and Utilizing Deep Neural Networks Trained with Noisy Labels](http://proceedings.mlr.press/v97/chen19g/chen19g.pdf), ICML 2019.
 - [Unsupervised Label Noise Modeling and Loss Correction](http://proceedings.mlr.press/v97/arazo19a/arazo19a.pdf), ICML 2019.
 - [Learning with Bad Training Data via Iterative Trimmed Loss Minimization](http://proceedings.mlr.press/v97/shen19e/shen19e.pdf), ICML 2019.
+- [Learning Not to Learn in the Presence of Noisy Labels](https://arxiv.org/pdf/2002.06541.pdf), ICML 2020 submitted.
+- [Learning Adaptive Loss for Robust Learning with Noisy Labels](https://arxiv.org/pdf/2002.06482.pdf), CVPR 2020 submitted.
+- [Improving Generalization by Controlling Label-Noise Information in Neural Network Weights](https://arxiv.org/pdf/2002.07933.pdf), ICML 2020 submitted.
 
 **Uncertainty estimate**
 

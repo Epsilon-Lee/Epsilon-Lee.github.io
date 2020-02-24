@@ -41,7 +41,7 @@ export PATH="/usr/local/bin/python3":$PATH  # make sure to use system's python
 python3 install.py --clang-completer
 ```
 
-`0-9jizhi` plantform password: `zyrRjan@EKBwx1
+`jizhi` plantform password: `zyrRjan@EKBwx1
 
 ##### Conda `python` env
 
