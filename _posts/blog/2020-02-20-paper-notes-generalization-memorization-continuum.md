@@ -7,7 +7,21 @@ tag: blog
 
 - toc
 {:toc}
-### Draft notes.
+### TLDR
+
+> If you want to see a longer version of the paper summary, please refer to **the longer *objective* summary** part.
+
+[This paper](https://arxiv.org/abs/2002.03206) define a C-Score (Consistency Score) of each training example $(x, y)$ - the expected learnable accuracy of $\hat{y} = y$ (where $\hat{y} = \mathcal{A}(x)$, model prediction when trained with rest of the training set) - to reflect the *relative* regularity of the example, so that human can understand the underlying structure of the whole dataset intuitively, i.e. to detect adversarial or noisy instances, to identify highly regular instances for abstraction (model forgetting its details) versus exceptional instances for memorization (model remember all its details), etc.
+
+Since the C-Score requires large training model from scratch thousand times, they propose three proxies of C-Score based on label-aware *kernel* (<u>see below Eq. 3 in paper</u>) distance of the - **i)** input, **ii)** hidden - representation $(x, y)$ w.r.t. rest of training instances, the $(x_i, y_i)$s; or on **iii)** the learning speed of $(x, y)$; so that only ***one single*** training is required. Experiments shows **iii)** correlates well ($\rho = 0.864$) with C-Score. During the process of the above investigations, carefully designed and very logical experiments are carried out, with further insights on:
+
+- Learning rate decay seems to enable or improve on learning of exceptional instances (Sec. 4.3's last paragraph);
+- Deep model seems to be [miscalibrated](https://arxiv.org/abs/1706.04599) or over-confidence later in training (Fig. 9 (b)), since early on confidence seems to correlate well with C-Score, but not later on;
+- Knowing the label information (cannot do well given only $x$ instead of $(x, y)$) seems critical to design surrogate for the C-Score (Sec. 4.2, 4.3);
+
+### Draft notes
+
+> I suppose the reader read this part along with the paper, and compare what they would take notes down compared with my notes. Actually, here I take notes about the technique part of this paper.
 
 - > ***Definition (Consistency score or C-score).***
   >
@@ -54,11 +68,11 @@ tag: blog
 
   - ***Kernel density estimation in input space***
 
-    - $$\hat{C}^{\pm L}(x, y) = \frac{1}{N} \sum^{N}_{i=1} 2 \cdot (\mathbb{I}[y = y_i] - 1/2) \cdot \mathcal{K}(x, x_i)$$
+    - $\hat{C}^{\pm L}(x, y) = \frac{1}{N} \sum^{N}_{i=1} 2 \cdot (\mathbb{I}[y = y_i] - 1/2) \cdot \mathcal{K}(x, x_i)$
 
-    - $$\hat{C}^{+L} = \frac{1}{N} \sum^{N}_{i=1} \mathbb{I}[y = y_i] \cdot \mathcal{K}(x, x_i)$$
+    - $\hat{C}^{+L} = \frac{1}{N} \sum^{N}_{i=1} \mathbb{I}[y = y_i] \cdot \mathcal{K}(x, x_i)$
 
-    - $$\hat{C}(x) = \frac{1}{N} \sum^{N}_{i=1} \mathcal{K}(x, x_i)$$
+    - $\hat{C}(x) = \frac{1}{N} \sum^{N}_{i=1} \mathcal{K}(x, x_i)$
 
       > ***Questions.***
       >
@@ -82,9 +96,9 @@ tag: blog
 
 ---
 
-### Insights
+### Derived Insights
 
-- This work is conducted along a very logical line of research thinkings and questions which can be referred to as a gold guideline of carrying out research:
+- (**A longer *objective* summary**) This work is conducted along a very logical line of research thinkings and questions which can be referred to as a gold guideline of carrying out research:
   - *firstly*, they propose the importance of understanding the learning phenomenon of deep neural networks from ***memorization*** of specific irregular training instances to abstraction (or ***generalization***) of relatively more regular instances. They argue by an example of human learning verb usage with reflections to further instantiate their motivation, which I think is very approriate and persuasive;
   - *secondly*, they give the definition of their proposed instance-wise *C-Score* and initially show some images from ImageNet that are labeled with their C-Score to demonstrate its capability to capture regularities to irregular cases.
   - *thirdly*, they provide approximation of calculating C-Score according to the original definition, to actually calculate it along three reasonable sized image datasets, namely, MNIST, CIFAR-10, CIFAR-100. And they show a nice visualization of a 2-D Countour distribution map on ImageNet which furthermore states the importance of variance of the C-Score in each class: larger the variance is, more diverse the instances that class has.
@@ -97,16 +111,29 @@ tag: blog
 
 ---
 
+- ***Subjective* comments and insights**
+  - I really like this paper, the logic is very clear, and their research investigation really appeals to my taste, that is (**the GOAL**):
+    - to **understand** the <u>learning phenomenon or outcome</u> of the model in ***realistic*** settings, we have to understand the <u>essence of the task itself</u>, aka. the **property** of the <u>training data</u>.
+  - Their way of achieving this goal is through a *quantitative* probe, named Consistency Score, on each instance. We can use the score to group, discriminate and cluster training instances so as to manifest their property *visually*. Along their in-depth investigation, many insights are drawn, see the TLDR parts. But I think the ultimate goal of **the GOAL** is for us to **[[**develop an operational theory of realistic generalization**]]**, for understanding both the success and failure of generalization on an unseen example $(x, y)$, this is what influence function does partially (refer to the **connection** part).
+  - Based on the paper, I have developed the following insights:
+    - If the **definition** of <u>memorization</u> is to see their C-Score pretty high, then, what is the effect of generalization on easy/hard test instances when the exceptional training instances are memorized or *controlled* to be not memorized?
+    - Intuitively, instances with high C-Score may be easy and fast to learn, so then, as the training goes on, do they tend to be ***forgetted*** according to observations in [information bottleneck](https://arxiv.org/abs/1503.02406)? Or their features are learned to form some more ***abstact*** subspace of cluster that is beneficial to generalization?
+    - To what extent, can C-Score distinguish adversarial examples, mislabelled examples (noise) and exceptional examples (not noise just rare)?
+
+---
+
 ### Some connections
 
-- Instance reweighting
+> `TODO: add more explanations on these possible connections`
+
+- **Instance reweighting**
   - [What is the effect of importance weighting in deep learning](http://zacklipton.com/media/papers/importance-weighting-byrd-lipton2019.pdf), ICML 2019.
 
-- Debugging dataset
-  - [Influence function](https://arxiv.org/abs/1703.04730) [related works](https://arxiv.org/abs/1905.13289)
-  - [Poisoning](https://arxiv.org/abs/1910.14147v1) [datasets](https://arxiv.org/abs/1811.00741)
-- Over-fitting, under-fitting under noise
-  - See this [post](https://epsilon-lee.github.io/blog/on-learning-under-dataset-noise/)
+- **Debugging dataset**
+  - [Influence function](https://arxiv.org/abs/1703.04730) [related works](https://arxiv.org/abs/1905.13289) from ICML 2017 and NeurIPS 2019.
+  - [Poisoning](https://arxiv.org/abs/1910.14147v1) [datasets](https://arxiv.org/abs/1811.00741) from NeurIPS 2019.
+- **Over-fitting, under-fitting under noise**
+  - See this [post](https://epsilon-lee.github.io/blog/on-learning-under-dataset-noise/) for several works on this.
 
 
 
